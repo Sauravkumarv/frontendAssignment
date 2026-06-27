@@ -1,16 +1,12 @@
 import Link from 'next/link'
+import { getProduct } from '@/lib/api'
 
 export async function getServerSideProps({ params }) {
-  const res = await fetch(`https://fakestoreapi.com/products/${params.id}`)
-
-  if (!res.ok) {
+  try {
+    const product = await getProduct(params.id)
+    return { props: { product } }
+  } catch {
     return { notFound: true }
-  }
-
-  const product = await res.json()
-
-  return {
-    props: { product },
   }
 }
 
