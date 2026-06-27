@@ -97,6 +97,26 @@ sauravBribooks/
 
 ## Troubleshooting
 
+### Vercel build fails with `next run build` or `/vercel/path0/run`
+
+Your Vercel **Build Command** is wrong. Fix it in Vercel Dashboard:
+
+1. Go to **Project → Settings → General → Build & Development Settings**
+2. Set these values:
+
+| Setting | Correct Value |
+|---------|---------------|
+| Framework Preset | **Next.js** |
+| Build Command | `npm run build` |
+| Output Directory | *(leave empty / default)* |
+| Install Command | `npm install` |
+
+3. Under **Environment Variables**, **delete** any custom `NODE_ENV` variable (Vercel sets this automatically).
+
+4. Redeploy: **Deployments → Redeploy**
+
+> Do **not** use `next run build` — that command does not exist.
+
 **Port already in use (`EADDRINUSE`)**
 
 ```bash
